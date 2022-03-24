@@ -32,10 +32,6 @@ class Curso(BaseModel):
         max_length=1, choices=NIVEL, blank=False, null=False, default="B"
     )
 
-    def save(self, *args, **kwargs):
-        self.descricao = self.descricao.capitalize()
-        return super(Curso, self).save(*args, **kwargs)
-
     def __str__(self) -> str:
         return self.descricao
 

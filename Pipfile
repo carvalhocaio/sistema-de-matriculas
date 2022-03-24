@@ -9,6 +9,8 @@ ipython = "*"
 django = "==3.2"
 python-decouple = "*"
 djangorestframework = "*"
+faker = "*"
+validate-docbr = "*"
 
 [dev-packages]
 
