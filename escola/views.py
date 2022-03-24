@@ -1,7 +1,8 @@
-from turtle import st
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+
+
 from rest_framework import viewsets, generics, status
-from rest_framework.authentication import BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from escola.models import Aluno, Curso, Matricula
@@ -49,6 +50,10 @@ class MatriculasViewSet(viewsets.ModelViewSet):
     queryset = Matricula.objects.all()
     serializer_class = MatriculaSerializer
     http_methods_names = ["get", "post", "put", "patch"]
+
+    @method_decorator(cache_page(20))
+    def dispatch(self, *args, **kwargs):
+        return super(MatriculasViewSet, self).dispatch(*args, **kwargs)
 
 
 class ListaMatriculasAluno(generics.ListAPIView):

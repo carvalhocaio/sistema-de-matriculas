@@ -14,6 +14,7 @@ class Aluno(BaseModel):
     rg = models.CharField(max_length=9, blank=False, null=False)
     cpf = models.CharField(max_length=11, blank=False, null=False)
     data_nascimento = models.DateField(blank=False, null=False)
+    foto = models.ImageField(blank=True)
 
     def save(self, *args, **kwargs):
         self.nome = self.nome.title()

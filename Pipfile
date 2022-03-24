@@ -11,6 +11,10 @@ python-decouple = "*"
 djangorestframework = "*"
 faker = "*"
 validate-docbr = "*"
+pillow = "*"
+django-cors-headers = "*"
+django-admin-honeypot = "*"
+djangorestframework-xml = "*"
 
 [dev-packages]
 
