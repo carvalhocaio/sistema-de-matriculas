@@ -10,14 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from decouple import config
 from pathlib import Path
-from dj_database_url import parse as db_url
-from os.path import join
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -43,7 +41,11 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-INSTALLED_APPS = DJANGO_APPS
+THIRDS_APP = ["rest_framework"]
+
+LOCAL_APPS = ["escola"]
+
+INSTALLED_APPS = DJANGO_APPS + THIRDS_APP + LOCAL_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -80,13 +82,11 @@ WSGI_APPLICATION = "config.wsgi.application"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    "default": config(
-        "DATABASE_URL",
-        cast=db_url,
-        default=f"sqlite:///{join(BASE_DIR, 'db.sqlite3')}",
-    ),
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+    }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

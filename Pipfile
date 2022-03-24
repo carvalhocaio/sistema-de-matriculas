@@ -8,7 +8,7 @@ black = "*"
 ipython = "*"
 django = "==3.2"
 python-decouple = "*"
-dj-database-url = "*"
+djangorestframework = "*"
 
 [dev-packages]
 
